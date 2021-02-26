@@ -1,17 +1,20 @@
-# {Team Name} - URL shortener {🧪}
+# Le gushqua - URL shortener {🧪}
 
-This is a template project for "Software testing" course labs. Use it to create your own repo and 
-fulfill/rewrite this document (at least, replace everything in `{...}`).
+This is a template project for "Software testing" course labs. So it is used only for student’s educational purposes.
+The aim of this project is to emulate real-life software engineering workflow.
 
 ## Students group
 
-- {Surname Name (in Ukrainian)} {email}
-- ...
-- {Surname Name (in Ukrainian)} {email}
+Our team consists of 5 students:
+- Бережняк Анна anytkin11@gmail.com
+- Гладка Тетяна tgladka6@gmail.com
+- Станкевич Наталія stankevich.natasha99@gmail.com
+- Сухонос Павло suhonos.p@gmail.com
+- Фомський Борис (TeamLead) quppeq@gmail.com
 
 ## Design document
 
-The [design document]({Place actual link to the design document Google Docs file here}) that
+The [design document](https://docs.google.com/document/d/1hLnS6k-SLagvAU_TlqdH5mgJqoAuxCo9E3KVGvhpQFA/edit#) that
 describes architecture and implementation details of this project.
 
 ### System structure
