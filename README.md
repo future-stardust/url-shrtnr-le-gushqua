@@ -12,25 +12,25 @@ Our team consists of 5 students:
 - Сухонос Павло suhonos.p@gmail.com
 - Фомський Борис (TeamLead) quppeq@gmail.com
 
-## Design document
+## Design document and specification
 
 The [design document](https://docs.google.com/document/d/1hLnS6k-SLagvAU_TlqdH5mgJqoAuxCo9E3KVGvhpQFA/edit#) that
 describes architecture and implementation details of this project.
+General description of the project can be found in [specification](https://docs.google.com/document/d/1RIQWpiXRuxUmI_VhMZjo-UgxMxjEIXIpC2tmMY_ZpuE/edit).
 
 ### System structure
 
 After the third laboratory assignment groups will switch projects with one another. Because of this,
-all projects have to have the same high-level structure. Also, this is the reason why you should not
+all projects have to have the same high-level structure. Also, this is the reason why we should not
 modify project dependencies.
 
-Please remember that the main goal of the course is **testing** and everything else is just an 
+We should remember that the main goal of the course is **testing** and everything else is just an 
 implementation harness.
 
 There are four modules:
 - `auth` **authentication module** - creates new users, authenticates existing ones
-- `bigtable` - **big table** - a key-value persistence storage (please, pay attention that you should implement it by
-  yourself. It means that it is not allowed to use data bases, another key-value storages 
-  implementation, etc)
+- `bigtable` - **big table** - a key-value persistence storage (Will be implemented by us. 
+  It means that it is not allowed to use data bases, another key-value storages implementation, etc)
 - `logic` - **business logic** - logic of URL shortening
 - `rest` - **REST API** - a module that provides a REST API. [Micronaut] framework is already added
   to project dependencies. It simplifies creation of REST API and provides built-in JWT 
