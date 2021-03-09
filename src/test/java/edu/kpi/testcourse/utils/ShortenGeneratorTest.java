@@ -1,13 +1,19 @@
 package edu.kpi.testcourse.utils;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+/**
+ ShortenGeneratorTest class has two methods for testing generating random strings.
+ checkShortenLen: checks for generating proper length
+ checkEmptyN: checks if method works with value by default
+ */
 
 public class ShortenGeneratorTest {
 
   @Test
-  void checkShortenLen(){
+  void checkShortenLen() {
     ShortenGenerator shortenGenerator = new ShortenGenerator();
 
     String shorten = shortenGenerator.generate(17);
@@ -16,7 +22,7 @@ public class ShortenGeneratorTest {
   }
 
   @Test
-  void checkEmptyN(){
+  void checkEmptyN() {
     ShortenGenerator shortenGenerator = new ShortenGenerator();
 
     String shorten = shortenGenerator.generate();
