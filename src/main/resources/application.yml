@@ -11,4 +11,10 @@ micronaut:
         signatures:
           secret:
             generator:
-              secret: supaDupaSecretThatNobodyWillKnow
+              secret: 192538A08FBE1D7CCAB30DF9FF66516D364A5F0E0B71FD2967D1DD4A55FB6137
+        generator:
+          access-token:
+            expiration: 3600
+    endpoints:
+      login:
+        path: signin
