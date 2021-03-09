@@ -19,4 +19,14 @@ class UserDaoImpl implements UserDao {
     return map.get(email);
   }
 
+  @Override
+  public Map<String, String> getAll() {
+    return map;
+  }
+
+  @Override
+  public void putAll(Map<String, String> map) {
+    this.map.putAll(map);
+  }
+
 }

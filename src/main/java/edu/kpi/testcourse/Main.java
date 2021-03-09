@@ -1,6 +1,7 @@
 package edu.kpi.testcourse;
 
 import com.google.gson.Gson;
+import edu.kpi.testcourse.bigtable.BigTableManager;
 import io.micronaut.runtime.Micronaut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
