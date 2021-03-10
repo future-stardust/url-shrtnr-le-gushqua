@@ -6,7 +6,7 @@ import javax.inject.Singleton;
 
 
 @Singleton
-public class AliasDaoImpl implements AliasDao {
+class AliasDaoImpl implements AliasDao {
 
   private final Map<String, Alias> map = new HashMap<>();
 
@@ -23,6 +23,21 @@ public class AliasDaoImpl implements AliasDao {
   @Override
   public Map<String, Alias> getAll() {
     return map;
+  }
+
+  @Override
+  public String toJson() {
+    return null;
+  }
+
+  @Override
+  public void fromJson() {
+
+  }
+
+  @Override
+  public String getFileName() {
+    return null;
   }
 
 }

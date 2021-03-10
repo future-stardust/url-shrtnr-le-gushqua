@@ -34,4 +34,19 @@ class TokenDaoImpl implements TokenDao {
     return map;
   }
 
+  @Override
+  public String toJson() {
+    return null;
+  }
+
+  @Override
+  public void fromJson() {
+
+  }
+
+  @Override
+  public String getFileName() {
+    return null;
+  }
+
 }

@@ -15,4 +15,10 @@ public interface UserDao {
 
   void putAll(Map<String, String> map);
 
+  String toJson();
+
+  void fromJson();
+
+  String getFileName();
+
 }

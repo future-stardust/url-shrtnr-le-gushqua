@@ -29,4 +29,19 @@ class UserDaoImpl implements UserDao {
     this.map.putAll(map);
   }
 
+  @Override
+  public String toJson() {
+    return null;
+  }
+
+  @Override
+  public void fromJson() {
+
+  }
+
+  @Override
+  public String getFileName() {
+    return null;
+  }
+
 }
