@@ -1,5 +1,6 @@
 package edu.kpi.testcourse.bigtable;
 
+import edu.kpi.testcourse.Main;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -36,12 +37,14 @@ class TokenDaoImpl implements TokenDao {
 
   @Override
   public String toJson() {
-    return null;
+    Map<String, Set<String>> users = this.getAll();
+    return Main.getGson().toJson(users);
   }
 
   @Override
-  public void fromJson() {
-
+  public void fromJson(String tokensJson) {
+    HashMap<String, Set<String>> tokensMap = Main.getGson().fromJson(tokensJson, HashMap.class);
+    map.putAll(tokensMap);
   }
 
   @Override

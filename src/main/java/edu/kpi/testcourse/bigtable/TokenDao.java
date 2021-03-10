@@ -18,7 +18,7 @@ public interface TokenDao {
 
   String toJson();
 
-  void fromJson();
+  void fromJson(String tokensJson);
 
   String getFileName();
 

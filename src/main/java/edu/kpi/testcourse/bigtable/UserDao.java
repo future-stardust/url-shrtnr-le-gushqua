@@ -17,7 +17,7 @@ public interface UserDao {
 
   String toJson();
 
-  void fromJson();
+  void fromJson(String usersJson);
 
   String getFileName();
 
