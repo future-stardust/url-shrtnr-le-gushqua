@@ -1,5 +1,6 @@
 package edu.kpi.testcourse.bigtable;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Singleton;
@@ -23,6 +24,11 @@ class AliasDaoImpl implements AliasDao {
   @Override
   public Map<String, Alias> getAll() {
     return map;
+  }
+
+  @Override
+  public Alias[] getAllByUser(UserDao user) {
+    return null;
   }
 
   @Override

@@ -6,7 +6,7 @@ package edu.kpi.testcourse.bigtable;
  *
  * @param shorten Короткий урл.
  * @param url Оригінальний урл.
- * @param username Юзер хто це урл зареєстрував.
+ * @param username Юзер хто цей урл зареєстрував.
  *
  */
 public record Alias(String shorten, String url, String username) {}

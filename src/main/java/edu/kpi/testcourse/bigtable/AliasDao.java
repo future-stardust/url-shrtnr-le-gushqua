@@ -13,6 +13,8 @@ public interface AliasDao {
 
   Map<String, Alias> getAll();
 
+  Alias[] getAllByUser(UserDao user);
+
   String toJson();
 
   void fromJson();
