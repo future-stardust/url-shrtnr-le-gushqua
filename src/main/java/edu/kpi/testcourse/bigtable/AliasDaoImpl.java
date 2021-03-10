@@ -8,7 +8,7 @@ import javax.inject.Singleton;
 
 
 @Singleton
-class AliasDaoImpl implements AliasDao {
+class AliasDaoImpl implements AliasDao, Serializible {
 
   private final Map<String, Alias> map = new HashMap<>();
 
@@ -41,7 +41,7 @@ class AliasDaoImpl implements AliasDao {
 
   @Override
   public String getFileName() {
-    return null;
+    return "alias.json";
   }
 
 }

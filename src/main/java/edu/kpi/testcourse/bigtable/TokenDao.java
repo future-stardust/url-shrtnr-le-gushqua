@@ -16,10 +16,4 @@ public interface TokenDao {
 
   Map<String, Set<String>> getAll();
 
-  String toJson();
-
-  void fromJson(String tokensJson);
-
-  String getFileName();
-
 }

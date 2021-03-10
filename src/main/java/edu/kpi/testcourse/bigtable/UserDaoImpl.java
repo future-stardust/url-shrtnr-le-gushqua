@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.inject.Singleton;
 
 @Singleton
-class UserDaoImpl implements UserDao {
+class UserDaoImpl implements UserDao, Serializible {
 
   private final Map<String, String> map = new HashMap<>();
 

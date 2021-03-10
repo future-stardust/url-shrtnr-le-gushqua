@@ -9,7 +9,10 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -22,20 +25,16 @@ public class BigTableManager {
   private static final Logger logger = LoggerFactory.getLogger(BigTableManager.class);
 
   @Inject
-  private TokenDao tokenDao;
-
-  @Inject
-  private UserDao userDao;
+  private List<Serializible> daos;
 
   @Scheduled(fixedRate = "1m", initialDelay = "1m")
   public void dumpData() throws IOException {
     logger.info("Start dump data");
-    Map<String, String> users = userDao.getAll();
-    String userJson = Main.getGson().toJson(users);
-    FileOutputStream fileOutputStream = new FileOutputStream("test.json");
-    byte[] userJsonBytes = userJson.getBytes(StandardCharsets.UTF_8);
-    fileOutputStream.write(userJsonBytes);
-    fileOutputStream.close();
+    for (Serializible dao : daos) {
+      Path path = Path.of(dao.getFileName());
+      String json = dao.toJson();
+      Files.writeString(path, json);
+    }
     logger.info("End dump data");
   }
 
@@ -43,9 +42,11 @@ public class BigTableManager {
   public void restoreData(final ServiceReadyEvent event) {
     logger.info("Restore data from file");
     try {
-      BufferedReader bufferedReader = new BufferedReader(new FileReader("test.json"));
-      HashMap<String, String> userJson = Main.getGson().fromJson(bufferedReader, HashMap.class);
-      userDao.putAll(userJson);
+      for (Serializible dao : daos) {
+        Path path = Path.of(dao.getFileName());
+        String json = Files.readString(path);
+        dao.fromJson(json);
+      }
       logger.info("End restore data from file");
     } catch (IOException e) {
       logger.info("Restore file doesnt exist");

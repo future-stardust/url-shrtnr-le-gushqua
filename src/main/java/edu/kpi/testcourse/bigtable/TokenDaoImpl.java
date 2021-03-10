@@ -8,7 +8,7 @@ import java.util.Set;
 import javax.inject.Singleton;
 
 @Singleton
-class TokenDaoImpl implements TokenDao {
+class TokenDaoImpl implements TokenDao, Serializible {
 
   private final Map<String, Set<String>> map = new HashMap<>();
 
@@ -49,7 +49,7 @@ class TokenDaoImpl implements TokenDao {
 
   @Override
   public String getFileName() {
-    return null;
+    return "tokens.json";
   }
 
 }

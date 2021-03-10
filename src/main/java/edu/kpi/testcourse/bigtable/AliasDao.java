@@ -13,10 +13,4 @@ public interface AliasDao {
 
   Map<String, Alias> getAll();
 
-  String toJson();
-
-  void fromJson(String aliasJson);
-
-  String getFileName();
-
 }
