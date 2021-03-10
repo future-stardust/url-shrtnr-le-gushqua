@@ -1,24 +1,20 @@
 package edu.kpi.testcourse.bigtable;
 
-import edu.kpi.testcourse.Main;
 import io.micronaut.discovery.event.ServiceReadyEvent;
 import io.micronaut.runtime.event.annotation.EventListener;
 import io.micronaut.scheduling.annotation.Scheduled;
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Відповідає за дамп і відновлення данних.
+ */
 @Singleton
 public class BigTableManager {
 
@@ -27,6 +23,12 @@ public class BigTableManager {
   @Inject
   private List<Serializible> daos;
 
+  /**
+   * Метод, який за розклад дампить дату у файли.
+   *
+   * @throws IOException Якщо раптом не вийде зробити дамп.
+   *
+   */
   @Scheduled(fixedRate = "1m", initialDelay = "1m")
   public void dumpData() throws IOException {
     logger.info("Start dump data");
@@ -38,6 +40,13 @@ public class BigTableManager {
     logger.info("End dump data");
   }
 
+  /**
+   * Даний метод запускає відновлення данних з дампу.
+   * Відбувається під час запуску додатку.
+   *
+   * @param event ServiceReadyEvent Івент Мікронавту, що додаток запустився.
+   *
+   */
   @EventListener
   public void restoreData(final ServiceReadyEvent event) {
     logger.info("Restore data from file");

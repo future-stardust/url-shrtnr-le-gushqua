@@ -1,5 +1,8 @@
 package edu.kpi.testcourse.bigtable;
 
+/**
+ * Інтерфейс серіалізації.
+ */
 public interface Serializible {
 
   String toJson();
