@@ -36,13 +36,19 @@ public class BigTableManager {
     byte[] userJsonBytes = userJson.getBytes(StandardCharsets.UTF_8);
     fileOutputStream.write(userJsonBytes);
     fileOutputStream.close();
+    logger.info("End dump data");
   }
 
   @EventListener
-  public void restoreData(final ServiceReadyEvent event) throws IOException {
+  public void restoreData(final ServiceReadyEvent event) {
     logger.info("Restore data from file");
-    BufferedReader bufferedReader = new BufferedReader(new FileReader("test.json"));
-    HashMap<String, String> userJson = Main.getGson().fromJson(bufferedReader, HashMap.class);
-    userDao.putAll(userJson);
+    try {
+      BufferedReader bufferedReader = new BufferedReader(new FileReader("test.json"));
+      HashMap<String, String> userJson = Main.getGson().fromJson(bufferedReader, HashMap.class);
+      userDao.putAll(userJson);
+      logger.info("End restore data from file");
+    } catch (IOException e) {
+      logger.info("Restore file doesnt exist");
+    }
   }
 }
