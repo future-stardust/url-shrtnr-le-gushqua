@@ -8,6 +8,8 @@ package edu.kpi.testcourse.utils;
 
 public class ShortenGenerator {
 
+  static final int  DEFAULT_LENGTH = 8;
+
   // function to generate a random string of length n
   static String generate(int n) {
 
@@ -30,11 +32,10 @@ public class ShortenGenerator {
     return sb.toString();
   }
 
-  @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-  static String generate() {
-    final int defaultLength = 8;
 
-    return ShortenGenerator.generate(defaultLength);
+  static String generate() {
+
+    return ShortenGenerator.generate(DEFAULT_LENGTH);
   }
 
 }
