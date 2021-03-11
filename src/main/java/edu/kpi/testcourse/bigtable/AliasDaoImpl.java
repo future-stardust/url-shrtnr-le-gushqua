@@ -35,7 +35,7 @@ class AliasDaoImpl implements AliasDao {
 
   @Override
   public void fromJson(String aliasJson) {
-    Map<String, Alias> aliasMap = Main.getGson().fromJson(aliasJson, HashMap.class);
+    Map<String, Alias> aliasMap = Main.getGson().fromJson(aliasJson, Map.class);
     map.putAll(aliasMap);
   }
 

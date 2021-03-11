@@ -43,7 +43,7 @@ class TokenDaoImpl implements TokenDao {
 
   @Override
   public void fromJson(String tokensJson) {
-    Map<String, Set<String>> tokensMap = Main.getGson().fromJson(tokensJson, HashMap.class);
+    Map<String, Set<String>> tokensMap = Main.getGson().fromJson(tokensJson, Map.class);
     map.putAll(tokensMap);
   }
 
