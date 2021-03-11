@@ -46,5 +46,4 @@ class UserDaoImpl implements UserDao {
   public String getFileName() {
     return "users.json";
   }
-
 }

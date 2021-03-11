@@ -71,7 +71,7 @@ public class ApiController {
   @Delete(value = "/urls/<alias>")
   public HttpResponse<Object> deleteAlias(String alias, Principal principal) {
     Alias aliasObj = aliasDao.get(alias);
-    if (aliasObj != null && aliasObj.username().equals(principal.getName())) {
+    if (aliasObj != null && aliasObj.getUsername().equals(principal.getName())) {
       aliasDao.remove(alias);
       return HttpResponse.ok("Alias was successfully deleted");
     }
@@ -89,7 +89,7 @@ public class ApiController {
     Alias aliasObj = aliasDao.get(alias);
     if (aliasObj != null) {
       try {
-        URI uri = new URI(aliasObj.url());
+        URI uri = new URI(aliasObj.getUrl());
         return HttpResponse.redirect(uri);
       } catch (URISyntaxException e) {
         e.printStackTrace();
