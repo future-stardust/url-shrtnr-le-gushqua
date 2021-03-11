@@ -1,6 +1,8 @@
 package edu.kpi.testcourse.bigtable;
 
+import com.google.gson.reflect.TypeToken;
 import edu.kpi.testcourse.Main;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Singleton;
@@ -39,7 +41,9 @@ class AliasDaoImpl implements AliasDao {
 
   @Override
   public void fromJson(String aliasJson) {
-    Map<String, Alias> aliasMap = Main.getGson().fromJson(aliasJson, Map.class);
+
+    Type typeOfAliasMap = new TypeToken<Map<String, Alias>>() { }.getType();
+    Map<String, Alias> aliasMap = Main.getGson().fromJson(aliasJson, typeOfAliasMap);
     map.putAll(aliasMap);
   }
 
