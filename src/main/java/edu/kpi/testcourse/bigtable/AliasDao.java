@@ -17,7 +17,7 @@ public interface AliasDao {
 
   String toJson();
 
-  void fromJson();
+  void fromJson(String aliasJson);
 
   String getFileName();
 

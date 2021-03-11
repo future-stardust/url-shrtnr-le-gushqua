@@ -1,8 +1,10 @@
 package edu.kpi.testcourse.bigtable;
 
+import edu.kpi.testcourse.Main;
 import com.sun.xml.internal.bind.v2.TODO;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import javax.inject.Singleton;
 
 
@@ -33,12 +35,14 @@ class AliasDaoImpl implements AliasDao {
 
   @Override
   public String toJson() {
-    return null;
+    Map<String, Alias> users = this.getAll();
+    return Main.getGson().toJson(users);
   }
 
   @Override
-  public void fromJson() {
-
+  public void fromJson(String aliasJson) {
+    HashMap<String, Alias> aliasMap = Main.getGson().fromJson(aliasJson, HashMap.class);
+    map.putAll(aliasMap);
   }
 
   @Override
