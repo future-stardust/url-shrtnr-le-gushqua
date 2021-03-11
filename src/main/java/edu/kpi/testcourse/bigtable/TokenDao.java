@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * DAO for invalid JWT tokens.
  */
-public interface TokenDao {
+public interface TokenDao extends Serializible {
 
   void add(String email, String invalidToken);
 

@@ -1,5 +1,6 @@
 package edu.kpi.testcourse.bigtable;
 
+import edu.kpi.testcourse.Main;
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Singleton;
@@ -19,4 +20,30 @@ class UserDaoImpl implements UserDao {
     return map.get(email);
   }
 
+  @Override
+  public Map<String, String> getAll() {
+    return map;
+  }
+
+  @Override
+  public void putAll(Map<String, String> map) {
+    this.map.putAll(map);
+  }
+
+  @Override
+  public String toJson() {
+    Map<String, String> users = this.getAll();
+    return Main.getGson().toJson(users);
+  }
+
+  @Override
+  public void fromJson(String usersJson) {
+    Map<String, String> usersMap = Main.getGson().fromJson(usersJson, Map.class);
+    map.putAll(usersMap);
+  }
+
+  @Override
+  public String getFileName() {
+    return "users.json";
+  }
 }
