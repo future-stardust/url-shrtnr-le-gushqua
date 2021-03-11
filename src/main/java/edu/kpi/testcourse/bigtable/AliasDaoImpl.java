@@ -8,7 +8,7 @@ import javax.inject.Singleton;
 
 
 @Singleton
-class AliasDaoImpl implements AliasDao, Serializible {
+class AliasDaoImpl implements AliasDao {
 
   private final Map<String, Alias> map = new HashMap<>();
 

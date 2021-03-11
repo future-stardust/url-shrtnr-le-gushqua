@@ -7,7 +7,7 @@ class SerializibleImplTest {
 
   @Test
   void checkUserToJsonSerialize(){
-    UserDaoImpl dao = new UserDaoImpl();
+    UserDao dao = new UserDaoImpl();
     dao.put("test@mail.com", "hash");
 
     String json = dao.toJson();
@@ -20,7 +20,7 @@ class SerializibleImplTest {
 
   @Test
   void checkTokenToJsonSerialize(){
-    TokenDaoImpl dao = new TokenDaoImpl();
+    TokenDao dao = new TokenDaoImpl();
     dao.add("test@mail.com", "asd");
 
     String json = dao.toJson();
@@ -33,7 +33,7 @@ class SerializibleImplTest {
 
   @Test
   void checkAliasToJsonSerialize(){
-    AliasDaoImpl dao = new AliasDaoImpl();
+    AliasDao dao = new AliasDaoImpl();
     String shrt = "shrt";
     Alias alias = new Alias(shrt, "longUrl", "itsMeMario");
     dao.add(shrt, alias);
