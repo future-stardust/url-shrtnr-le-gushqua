@@ -8,7 +8,7 @@ import java.util.Set;
 import javax.inject.Singleton;
 
 @Singleton
-class TokenDaoImpl implements TokenDao, Serializible {
+class TokenDaoImpl implements TokenDao {
 
   private final Map<String, Set<String>> map = new HashMap<>();
 

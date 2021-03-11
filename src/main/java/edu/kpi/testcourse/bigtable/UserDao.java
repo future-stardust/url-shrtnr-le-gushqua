@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * DAO for users.
  */
-public interface UserDao {
+public interface UserDao extends Serializible {
 
   void put(String email, String password);
 
