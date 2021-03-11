@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Dao for users.
  */
-public interface AliasDao {
+public interface AliasDao extends Serializible {
 
   void add(String shorten, Alias alias);
 
@@ -14,11 +14,5 @@ public interface AliasDao {
   Map<String, Alias> getAll();
 
   Alias[] getAllByUser(UserDao user);
-
-  String toJson();
-
-  void fromJson(String aliasJson);
-
-  String getFileName();
 
 }

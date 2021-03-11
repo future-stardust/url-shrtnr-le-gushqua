@@ -38,7 +38,7 @@ class UserDaoImpl implements UserDao {
 
   @Override
   public void fromJson(String usersJson) {
-    HashMap<String, String> usersMap = Main.getGson().fromJson(usersJson, HashMap.class);
+    Map<String, String> usersMap = Main.getGson().fromJson(usersJson, Map.class);
     map.putAll(usersMap);
   }
 

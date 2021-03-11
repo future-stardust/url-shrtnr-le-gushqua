@@ -41,13 +41,13 @@ class AliasDaoImpl implements AliasDao {
 
   @Override
   public void fromJson(String aliasJson) {
-    HashMap<String, Alias> aliasMap = Main.getGson().fromJson(aliasJson, HashMap.class);
+    Map<String, Alias> aliasMap = Main.getGson().fromJson(aliasJson, Map.class);
     map.putAll(aliasMap);
   }
 
   @Override
   public String getFileName() {
-    return null;
+    return "alias.json";
   }
 
 }
