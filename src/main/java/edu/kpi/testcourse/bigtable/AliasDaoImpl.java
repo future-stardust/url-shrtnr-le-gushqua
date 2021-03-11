@@ -2,8 +2,8 @@ package edu.kpi.testcourse.bigtable;
 
 import com.google.gson.reflect.TypeToken;
 import edu.kpi.testcourse.Main;
-import java.util.ArrayList;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -38,9 +38,8 @@ class AliasDaoImpl implements AliasDao {
   @Override
   public ArrayList<Alias> getAllByUser(String userName) {
     ArrayList<Alias> aliases = null;
-    for (Alias alias:map.values()
-    ) {
-      if (alias.getUsername() == userName) {
+    for (Alias alias : map.values()) {
+      if (alias.getUsername().equals(userName)) {
         aliases.add(alias);
       }
     }
