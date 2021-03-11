@@ -1,10 +1,9 @@
 package edu.kpi.testcourse.bigtable;
 
 import edu.kpi.testcourse.Main;
-import com.sun.xml.internal.bind.v2.TODO;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import javax.inject.Singleton;
 
 
@@ -19,6 +18,11 @@ class AliasDaoImpl implements AliasDao {
   }
 
   @Override
+  public void remove(String alias) {
+    map.remove(alias);
+  }
+
+  @Override
   public Alias get(String shorten) {
     return map.get(shorten);
   }
@@ -29,8 +33,15 @@ class AliasDaoImpl implements AliasDao {
   }
 
   @Override
-  public Alias[] getAllByUser(UserDao user) {
-    return null;
+  public ArrayList<Alias> getAllByUser(String userName) {
+    ArrayList<Alias> aliases = null;
+    for (Alias alias:map.values()
+    ) {
+      if (alias.username() == userName) {
+        aliases.add(alias);
+      }
+    }
+    return aliases;
   }
 
   @Override

@@ -1,5 +1,6 @@
 package edu.kpi.testcourse.bigtable;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -13,6 +14,7 @@ public interface AliasDao extends Serializible {
 
   Map<String, Alias> getAll();
 
-  Alias[] getAllByUser(UserDao user);
+  ArrayList<Alias> getAllByUser(String userName);
 
+  void remove(String alias);
 }

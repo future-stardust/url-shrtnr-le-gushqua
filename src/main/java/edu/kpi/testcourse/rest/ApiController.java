@@ -1,6 +1,8 @@
 package edu.kpi.testcourse.rest;
 
 import edu.kpi.testcourse.Main;
+import edu.kpi.testcourse.bigtable.Alias;
+import edu.kpi.testcourse.bigtable.AliasDao;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
@@ -9,6 +11,9 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.security.Principal;
 import javax.inject.Inject;
 
 /**
@@ -25,6 +30,9 @@ public class ApiController {
     return Main.getGson().toJson(new ExampleClass("Hello", "world!"));
   }
 
+  @Inject
+  public AliasDao aliasDao;
+
   /**
    * Create an URL alias.
    *
@@ -34,8 +42,14 @@ public class ApiController {
    * @return OK/error.
    */
   @Post(value = "/urls/shorten", consumes = MediaType.APPLICATION_JSON)
-  public HttpResponse<Object> shortenUrl(String url, String alias) {
-    return HttpResponse.ok();
+  public HttpResponse<Object> shortenUrl(String url, String alias, Principal principal) {
+    if (aliasDao.get(alias) == null) {
+      Alias aliasObj = new Alias(alias, url, principal.getName());
+      aliasDao.add(alias, aliasObj);
+      return HttpResponse.ok("A new alias for url was created successfully");
+    } else {
+      return HttpResponse.badRequest("Alias is not unique!");
+    }
   }
 
   /**
@@ -44,8 +58,8 @@ public class ApiController {
    * @return array of user's aliases.
    */
   @Get(value = "/urls", produces = MediaType.APPLICATION_JSON)
-  public String[] getUserAliases() {
-    return new String[]{"Some aliases"};
+  public String getUserAliases(Principal principal) {
+    return Main.getGson().toJson(aliasDao.getAllByUser(principal.getName()));
   }
 
   /**
@@ -55,8 +69,13 @@ public class ApiController {
    * @return OK/error.
    */
   @Delete(value = "/urls/<alias>")
-  public HttpResponse<Object> deleteAlias(String alias) {
-    return HttpResponse.ok();
+  public HttpResponse<Object> deleteAlias(String alias, Principal principal) {
+    Alias aliasObj = aliasDao.get(alias);
+    if (aliasObj != null && aliasObj.username().equals(principal.getName())) {
+      aliasDao.remove(alias);
+      return HttpResponse.ok("Alias was successfully deleted");
+    }
+    return HttpResponse.badRequest("Could not find such alias among your aliases!");
   }
 
   /**
@@ -67,6 +86,15 @@ public class ApiController {
    */
   @Get(value = "/r/<alias>", produces = MediaType.APPLICATION_JSON)
   public HttpResponse<Object> redirectToUrl(String alias) {
-    return HttpResponse.ok();
+    Alias aliasObj = aliasDao.get(alias);
+    if (aliasObj != null) {
+      try {
+        URI uri = new URI(aliasObj.url());
+        return HttpResponse.redirect(uri);
+      } catch (URISyntaxException e) {
+        e.printStackTrace();
+      }
+    }
+    return HttpResponse.badRequest("Could not find uri with such alias!");
   }
 }

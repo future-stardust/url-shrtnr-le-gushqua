@@ -4,7 +4,8 @@ import edu.kpi.testcourse.bigtable.AliasDao;
 
 public class AliasEntity {
 
-  private AliasDao alias;
+  private AliasDao aliasEnt;
+
 
 
 }
