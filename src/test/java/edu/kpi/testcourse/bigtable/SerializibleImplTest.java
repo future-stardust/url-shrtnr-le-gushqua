@@ -12,8 +12,10 @@ class SerializibleImplTest {
 
     String json = dao.toJson();
 
-    assertThat(json).isEqualTo("{\"test@mail.com\":\"hash\"}");
-    assertThat(json).isNotEqualTo("{\"test@mail.com\":\"hashh\"}");
+    assertThat(json).isEqualTo("""
+      {"test@mail.com":"hash"}""");
+    assertThat(json).isNotEqualTo("""
+      {"test@mail.com":"hashh"}""");
   }
 
   @Test
@@ -23,8 +25,10 @@ class SerializibleImplTest {
 
     String json = dao.toJson();
 
-    assertThat(json).isEqualTo("{\"test@mail.com\":[\"asd\"]}");
-    assertThat(json).isNotEqualTo("{\"test@mail.com\":[\"asdd\"]}");
+    assertThat(json).isEqualTo("""
+      {"test@mail.com":["asd"]}""");
+    assertThat(json).isNotEqualTo("""
+      {"test@mail.com":["asdd"]}""");
   }
 
   @Test
@@ -36,14 +40,10 @@ class SerializibleImplTest {
 
     String json = dao.toJson();
 
-    assertThat(json).isEqualTo("{\"shrt\":"
-      + "{\"shorten\":\"shrt\","
-      + "\"url\":\"longUrl\","
-      + "\"username\":\"itsMeMario\"}}");
-    assertThat(json).isNotEqualTo("{\"shrt\":"
-      + "{\"shorten\":\"shrt\","
-      + "\"url\":\"longUrl\","
-      + "\"username\":\"itsMeWario\"}}");
+    assertThat(json).isEqualTo("""
+       {"shrt":{"shorten":"shrt","url":"longUrl","username":"itsMeMario"}}""");
+    assertThat(json).isNotEqualTo("""
+       {"shrt":{"shorten":"shrt","url":"longUrl","username":"itsMeWario"}}""");
   }
 
 }

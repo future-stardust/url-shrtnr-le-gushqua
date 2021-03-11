@@ -38,7 +38,7 @@ class UserDaoImpl implements UserDao, Serializible {
 
   @Override
   public void fromJson(String usersJson) {
-    HashMap<String, String> usersMap = Main.getGson().fromJson(usersJson, HashMap.class);
+    Map<String, String> usersMap = Main.getGson().fromJson(usersJson, HashMap.class);
     map.putAll(usersMap);
   }
 

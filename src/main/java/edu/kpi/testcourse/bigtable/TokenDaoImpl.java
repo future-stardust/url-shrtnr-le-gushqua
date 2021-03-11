@@ -43,7 +43,7 @@ class TokenDaoImpl implements TokenDao, Serializible {
 
   @Override
   public void fromJson(String tokensJson) {
-    HashMap<String, Set<String>> tokensMap = Main.getGson().fromJson(tokensJson, HashMap.class);
+    Map<String, Set<String>> tokensMap = Main.getGson().fromJson(tokensJson, HashMap.class);
     map.putAll(tokensMap);
   }
 

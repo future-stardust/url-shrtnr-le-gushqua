@@ -35,7 +35,7 @@ class AliasDaoImpl implements AliasDao, Serializible {
 
   @Override
   public void fromJson(String aliasJson) {
-    HashMap<String, Alias> aliasMap = Main.getGson().fromJson(aliasJson, HashMap.class);
+    Map<String, Alias> aliasMap = Main.getGson().fromJson(aliasJson, HashMap.class);
     map.putAll(aliasMap);
   }
 
