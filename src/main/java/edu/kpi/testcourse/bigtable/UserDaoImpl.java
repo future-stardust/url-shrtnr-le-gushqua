@@ -19,7 +19,6 @@ class UserDaoImpl implements UserDao {
   public String get(String email) {
     return map.get(email);
   }
-
   @Override
   public Map<String, String> getAll() {
     return map;
@@ -46,5 +45,4 @@ class UserDaoImpl implements UserDao {
   public String getFileName() {
     return "users.json";
   }
-
 }

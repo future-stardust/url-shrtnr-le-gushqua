@@ -51,5 +51,4 @@ class TokenDaoImpl implements TokenDao {
   public String getFileName() {
     return "tokens.json";
   }
-
 }

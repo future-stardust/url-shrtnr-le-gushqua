@@ -1,5 +1,4 @@
 package edu.kpi.testcourse.bigtable;
-
 import java.util.Map;
 
 /**
@@ -14,5 +13,4 @@ public interface UserDao extends Serializible {
   Map<String, String> getAll();
 
   void putAll(Map<String, String> map);
-
 }
