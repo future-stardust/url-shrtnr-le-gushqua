@@ -11,7 +11,7 @@ public class ShortenGenerator {
   static final int  DEFAULT_LENGTH = 8;
 
   // function to generate a random string of length n
-  static String generate(int n) {
+  public static String generate(int n) {
 
     // chose a Character random from this String
     String alphaString = "abcdefghijklmnopqrstuvxyz";
@@ -33,7 +33,7 @@ public class ShortenGenerator {
   }
 
 
-  static String generate() {
+  public static String generate() {
 
     return ShortenGenerator.generate(DEFAULT_LENGTH);
   }

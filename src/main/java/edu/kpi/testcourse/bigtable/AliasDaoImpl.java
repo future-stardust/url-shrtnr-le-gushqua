@@ -37,7 +37,7 @@ class AliasDaoImpl implements AliasDao {
 
   @Override
   public ArrayList<Alias> getAllByUser(String userName) {
-    ArrayList<Alias> aliases = null;
+    ArrayList<Alias> aliases = new ArrayList<>();
     for (Alias alias : map.values()) {
       if (alias.getUsername().equals(userName)) {
         aliases.add(alias);
