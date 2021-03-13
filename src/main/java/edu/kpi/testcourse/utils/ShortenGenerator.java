@@ -8,10 +8,15 @@ package edu.kpi.testcourse.utils;
 
 public class ShortenGenerator {
 
-  static final int  DEFAULT_LENGTH = 8;
+  public static final int  DEFAULT_LENGTH = 8;
 
-  // function to generate a random string of length n
-  static String generate(int n) {
+  /**
+   * function to generate a random string of length n.
+   *
+   * @param n - size of generated alias size.
+   * @return random generated alias.
+   */
+  public static String generate(int n) {
 
     // chose a Character random from this String
     String alphaString = "abcdefghijklmnopqrstuvxyz";
@@ -33,8 +38,12 @@ public class ShortenGenerator {
   }
 
 
-  static String generate() {
-
+  /**
+   * function to generate a random string with default length.
+   *
+   * @return random generated alias with default DEFAULT_LENGTH length.
+   */
+  public static String generate() {
     return ShortenGenerator.generate(DEFAULT_LENGTH);
   }
 

@@ -1,6 +1,9 @@
 package edu.kpi.testcourse.rest;
 
 import edu.kpi.testcourse.Main;
+import edu.kpi.testcourse.bigtable.Alias;
+import edu.kpi.testcourse.bigtable.AliasDao;
+import edu.kpi.testcourse.utils.ShortenGenerator;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
@@ -9,7 +12,14 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.security.Principal;
+import javax.annotation.Nullable;
 import javax.inject.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * REST API controller that provides logic for Micronaut framework.
@@ -18,6 +28,8 @@ import javax.inject.Inject;
 @Controller
 public class ApiController {
 
+  private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
+
   record ExampleClass(String first, String second) {}
 
   @Get(value = "/hello", produces = MediaType.APPLICATION_JSON)
@@ -25,8 +37,14 @@ public class ApiController {
     return Main.getGson().toJson(new ExampleClass("Hello", "world!"));
   }
 
+  @Inject
+  public AliasDao aliasDao;
+
   /**
    * Create an URL alias.
+   * If user wants to create URL alias without own alias, the system will generate a random alias.
+   * If the random alias isn't unique we generate another one with the length+1
+   * until random alias will be unique.
    *
    * @param url string, required - link which has to be shortened.
    * @param alias string, optional - desired alias for a full link.
@@ -34,8 +52,21 @@ public class ApiController {
    * @return OK/error.
    */
   @Post(value = "/urls/shorten", consumes = MediaType.APPLICATION_JSON)
-  public HttpResponse<Object> shortenUrl(String url, String alias) {
-    return HttpResponse.ok();
+  public HttpResponse<Object> shortenUrl(String url, @Nullable String alias, Principal principal) {
+    if (alias == null) {
+      int len = ShortenGenerator.DEFAULT_LENGTH;
+      do {
+        alias = ShortenGenerator.generate(len);
+        len++;
+      } while (aliasDao.get(alias) == null);
+    }
+    if (aliasDao.get(alias) == null) {
+      Alias aliasObj = new Alias(alias, url, principal.getName());
+      aliasDao.add(alias, aliasObj);
+      return HttpResponse.ok(Main.getGson().toJson(aliasObj));
+    } else {
+      return HttpResponse.badRequest("Alias is not unique!");
+    }
   }
 
   /**
@@ -44,8 +75,8 @@ public class ApiController {
    * @return array of user's aliases.
    */
   @Get(value = "/urls", produces = MediaType.APPLICATION_JSON)
-  public String[] getUserAliases() {
-    return new String[]{"Some aliases"};
+  public String getUserAliases(Principal principal) {
+    return Main.getGson().toJson(aliasDao.getAllByUser(principal.getName()));
   }
 
   /**
@@ -54,9 +85,14 @@ public class ApiController {
    * @param alias string, required - alias, that needs to be removed.
    * @return OK/error.
    */
-  @Delete(value = "/urls/<alias>")
-  public HttpResponse<Object> deleteAlias(String alias) {
-    return HttpResponse.ok();
+  @Delete(value = "/urls/{alias}")
+  public HttpResponse<Object> deleteAlias(String alias, Principal principal) {
+    Alias aliasObj = aliasDao.get(alias);
+    if (aliasObj != null && aliasObj.getUsername().equals(principal.getName())) {
+      aliasDao.remove(alias);
+      return HttpResponse.ok("Alias was successfully deleted");
+    }
+    return HttpResponse.badRequest("Could not find such alias among your aliases!");
   }
 
   /**
@@ -65,8 +101,19 @@ public class ApiController {
    * @param alias string, required - alias for the full link.
    * @return Redirect/Error.
    */
-  @Get(value = "/r/<alias>", produces = MediaType.APPLICATION_JSON)
+  @Secured(SecurityRule.IS_ANONYMOUS)
+  @Get(value = "/r/{alias}")
   public HttpResponse<Object> redirectToUrl(String alias) {
-    return HttpResponse.ok();
+    Alias aliasObj = aliasDao.get(alias);
+    logger.info(alias);
+    if (aliasObj != null) {
+      try {
+        URL uri = new URL(aliasObj.getUrl());
+        return HttpResponse.redirect(uri.toURI());
+      } catch (URISyntaxException | MalformedURLException e) {
+        e.printStackTrace();
+      }
+    }
+    return HttpResponse.badRequest("Could not find uri with such alias!");
   }
 }
