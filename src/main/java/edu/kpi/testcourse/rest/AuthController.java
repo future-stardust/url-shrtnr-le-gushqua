@@ -65,7 +65,7 @@ public class AuthController {
   @Secured(SecurityRule.IS_AUTHENTICATED)
   @Get(value = "/signout")
   public MutableHttpResponse<JsonError> signOut(@Header String authorization)
-    throws ParseException {
+      throws ParseException {
     logger.info("Sign out");
 
     String token = JwtUtils.getToken(authorization);
