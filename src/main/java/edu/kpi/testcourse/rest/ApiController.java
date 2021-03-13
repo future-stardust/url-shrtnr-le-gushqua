@@ -46,9 +46,9 @@ public class ApiController {
 
   /**
    * Create an URL alias.
-   *
-   * If user wants to create URL alias without its own alias, the system will generate a random alias.
-   * If the random alias isn't unique we generate another one with the length+1, until random alias will be unique.
+   * If user wants to create URL alias without own alias, the system will generate a random alias.
+   * If the random alias isn't unique we generate another one with the length+1
+   * until random alias will be unique.
    *
    * @param url string, required - link which has to be shortened.
    * @param alias string, optional - desired alias for a full link.
