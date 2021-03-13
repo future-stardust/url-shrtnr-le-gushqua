@@ -58,7 +58,7 @@ public class ApiController {
       do {
         alias = ShortenGenerator.generate(len);
         len++;
-      } while (aliasDao.get(alias) == null);
+      } while (aliasDao.get(alias) != null);
     }
     if (aliasDao.get(alias) == null) {
       Alias aliasObj = new Alias(alias, url, principal.getName());
