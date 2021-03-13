@@ -11,12 +11,11 @@ public class ShortenGenerator {
   public static final int  DEFAULT_LENGTH = 8;
 
   /**
-   * function to generate a random string of length n
+   * function to generate a random string of length n.
    *
-   * @param n - size of generated alias size
-   * @return random generated alias
+   * @param n - size of generated alias size.
+   * @return random generated alias.
    */
-  @SuppressWarnings("checkstyle:MissingJavadocMethod")
   public static String generate(int n) {
 
     // chose a Character random from this String
@@ -39,6 +38,11 @@ public class ShortenGenerator {
   }
 
 
+  /**
+   * function to generate a random string with default length.
+   *
+   * @return random generated alias with default DEFAULT_LENGTH length.
+   */
   public static String generate() {
     return ShortenGenerator.generate(DEFAULT_LENGTH);
   }

@@ -1,0 +1,47 @@
+# curl localhost:8080/signin -X POST -H 'Content-Type:application/json' -d '{"username":"test","password":"test"}'
+POST localhost:8080/signin
+Content-Type: application/json
+
+{"username":"test","password":"test"}
+
+
+###
+
+# curl localhost:8080/signup -X POST -H 'Content-Type:application/json' -d '{"username":"test","password":"test"}'
+POST localhost:8080/signup
+Content-Type: application/json
+
+{"username":"test","password":"test"}
+
+
+###
+
+POST localhost:8080/urls/shorten
+#/shorten
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwibmJmIjoxNjE1NTg0OTQ4LCJyb2xlcyI6W10sImlzcyI6InRlc3QtY291cnNlLXRlbXBsYXRlIiwiZXhwIjoxNjE1NTg4NTQ4LCJpYXQiOjE2MTU1ODQ5NDh9.b4-zyUnVuH8iz3-DLgatM9yMmfS-ijAUW9tCGerC25I
+
+{"url":"http://tkr.net"}
+
+
+###
+
+GET localhost:8080/urls
+#/shorten
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwibmJmIjoxNjE1NTg0OTQ4LCJyb2xlcyI6W10sImlzcyI6InRlc3QtY291cnNlLXRlbXBsYXRlIiwiZXhwIjoxNjE1NTg4NTQ4LCJpYXQiOjE2MTU1ODQ5NDh9.b4-zyUnVuH8iz3-DLgatM9yMmfS-ijAUW9tCGerC25I
+###
+
+GET localhost:8080/r/shrt
+#/shorten
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwibmJmIjoxNjE1NTg0OTQ4LCJyb2xlcyI6W10sImlzcyI6InRlc3QtY291cnNlLXRlbXBsYXRlIiwiZXhwIjoxNjE1NTg4NTQ4LCJpYXQiOjE2MTU1ODQ5NDh9.b4-zyUnVuH8iz3-DLgatM9yMmfS-ijAUW9tCGerC25I
+
+###
+
+DELETE localhost:8080/urls/shrt
+#/shorten
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwibmJmIjoxNjE1NTg0OTQ4LCJyb2xlcyI6W10sImlzcyI6InRlc3QtY291cnNlLXRlbXBsYXRlIiwiZXhwIjoxNjE1NTg4NTQ4LCJpYXQiOjE2MTU1ODQ5NDh9.b4-zyUnVuH8iz3-DLgatM9yMmfS-ijAUW9tCGerC25I
+
+###
