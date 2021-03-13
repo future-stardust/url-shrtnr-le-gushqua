@@ -8,7 +8,7 @@ class SerializibleImplTest {
 
   @Test
   void checkUserToJsonSerialize() {
-    UserDaoImpl dao = new UserDaoImpl();
+    UserDao dao = new UserDaoImpl();
     dao.put("test@mail.com", "hash");
 
     String json = dao.toJson();
@@ -21,14 +21,14 @@ class SerializibleImplTest {
 
   @Test
   void checkJsonToUserDeserialize() {
-    UserDaoImpl userdao = new UserDaoImpl();
+    UserDao userdao = new UserDaoImpl();
     userdao.fromJson("{test@mail.com:hash}");
     assertThat(userdao.get("test@mail.com")).isEqualTo("hash");
   }
 
   @Test
   void checkTokenToJsonSerialize() {
-    TokenDaoImpl dao = new TokenDaoImpl();
+    TokenDao dao = new TokenDaoImpl();
     dao.add("test@mail.com", "asd");
 
     String json = dao.toJson();
@@ -41,7 +41,7 @@ class SerializibleImplTest {
 
   @Test
   void checkAliasToJsonSerialize() {
-    AliasDaoImpl dao = new AliasDaoImpl();
+    AliasDao dao = new AliasDaoImpl();
     String shrt = "shrt";
     Alias alias = new Alias(shrt, "longUrl", "itsMeMario");
     dao.add(shrt, alias);
@@ -55,13 +55,13 @@ class SerializibleImplTest {
 
   @Test
   void checkJsonToAliasDeserialize() {
-    AliasDaoImpl dao = new AliasDaoImpl();
+    AliasDao dao = new AliasDaoImpl();
     dao.fromJson("""
       {"shrt":{"shorten":"shrt","url":"longUrl","username":"itsMeMario"}}""");
     String shrt = "shrt";
     Alias etalon = new Alias(shrt, "longUrl", "itsMeMario");
-    Alias etalon2 = dao.get(shrt);
-    assertThat(etalon2).isEqualTo(etalon);
+    Alias fromJson = dao.get(shrt);
+    assertThat(fromJson).isEqualTo(etalon);
 
   }
 
