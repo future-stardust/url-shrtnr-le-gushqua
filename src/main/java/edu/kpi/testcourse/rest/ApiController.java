@@ -55,7 +55,11 @@ public class ApiController {
   @Post(value = "/urls/shorten", consumes = MediaType.APPLICATION_JSON)
   public HttpResponse<Object> shortenUrl(String url, @Nullable String alias, Principal principal) {
     if (alias == null) {
-      alias = ShortenGenerator.generate();
+      int len = ShortenGenerator.DEFAULT_LENGTH;
+      do {
+        alias = ShortenGenerator.generate(len);
+        len++;
+      } while (aliasDao.get(alias) == null);
     }
     if (aliasDao.get(alias) == null) {
       Alias aliasObj = new Alias(alias, url, principal.getName());

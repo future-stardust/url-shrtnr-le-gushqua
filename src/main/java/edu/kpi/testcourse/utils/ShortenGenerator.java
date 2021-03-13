@@ -8,7 +8,7 @@ package edu.kpi.testcourse.utils;
 
 public class ShortenGenerator {
 
-  static final int  DEFAULT_LENGTH = 8;
+  public static final int  DEFAULT_LENGTH = 8;
 
   // function to generate a random string of length n
   public static String generate(int n) {
