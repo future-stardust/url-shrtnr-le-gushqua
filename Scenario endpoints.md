@@ -55,6 +55,7 @@
 
     # curl localhost:8080/urls/sh 
       -X GET
+      -H 'Content-Type:application/json'
       -H ‘Authorization: Bearer <TOKEN FROM THE LOGIN RESPONSE>’
     #/shorten
     Content-Type: application/json
