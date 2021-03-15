@@ -66,7 +66,6 @@
 
     GET localhost:8080/r/gist
     #/shorten
-    Authorization: Bearer <TOKEN FROM THE LOGIN RESPONSE>
 
 
 
