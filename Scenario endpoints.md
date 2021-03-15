@@ -29,7 +29,7 @@
 ### Create an URL alias (with random generated alias name)
 
     POST localhost:8080/urls/shorten
-    curl localhost:8080/urls/shorten 
+    # curl localhost:8080/urls/shorten 
       -X POST 
       -H 'Content-Type:application/json' 
       -H 'Authorization: Bearer <TOKEN FROM THE LOGIN RESPONSE>’ 
@@ -73,7 +73,7 @@
 ### Delete shortened link
 
     DELETE localhost:8080/urls/gist
-    curl localhost:8080/urls/gist 
+    # curl localhost:8080/urls/gist 
       -X DELETE 
       -H 'Content-Type:application/json' 
       -H 'Authorization: Bearer <TOKEN FROM THE LOGIN RESPONSE>’ 
