@@ -66,7 +66,6 @@
 
     GET localhost:8080/r/gist
     #/shorten
-    Content-Type: application/json
     Authorization: Bearer <TOKEN FROM THE LOGIN RESPONSE>
 
 
@@ -77,4 +76,3 @@
     #/shorten
     Content-Type: application/json
     Authorization: Bearer <TOKEN FROM THE LOGIN RESPONSE>
-
