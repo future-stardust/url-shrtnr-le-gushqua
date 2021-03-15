@@ -73,6 +73,9 @@
 ### Delete shortened link
 
     DELETE localhost:8080/urls/gist
-    #/shorten
+    curl localhost:8080/urls/gist 
+      -X DELETE 
+      -H 'Content-Type:application/json' 
+      -H 'Authorization: Bearer <TOKEN FROM THE LOGIN RESPONSE>’ 
     Content-Type: application/json
     Authorization: Bearer <TOKEN FROM THE LOGIN RESPONSE>
