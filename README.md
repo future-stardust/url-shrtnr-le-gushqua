@@ -36,6 +36,12 @@ There are four modules:
   to project dependencies. It simplifies creation of REST API and provides built-in JWT 
   authentication.
 
+### Main scenario endpoints
+
+You can find main scenario endpoints in [google doc](https://docs.google.com/document/d/1WVX6a76JkLmzUeJz2cZbO1WvXqWsY_XO2sA3a15qgIQ/edit#heading=h.yqb5kvpzfmry)
+
+We also recomend to see some [curl examples](https://github.com/future-stardust/url-shrtnr-le-gushqua/blob/main/manualTests/http.http)
+
 ## Environment prerequisites
 
 ### Java
