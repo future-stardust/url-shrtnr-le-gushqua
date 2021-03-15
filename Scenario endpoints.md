@@ -29,7 +29,11 @@
 ### Create an URL alias (with random generated alias name)
 
     POST localhost:8080/urls/shorten
-    #/shorten
+    curl localhost:8080/urls/shorten 
+      -X POST 
+      -H 'Content-Type:application/json' 
+      -H 'Authorization: Bearer <TOKEN FROM THE LOGIN RESPONSE>’ 
+      -d '{"url":"https://www.google.com"}'
     Content-Type: application/json
     Authorization: Bearer <TOKEN FROM THE LOGIN RESPONSE>
 
@@ -73,5 +77,4 @@
     #/shorten
     Content-Type: application/json
     Authorization: Bearer <TOKEN FROM THE LOGIN RESPONSE>
-
 
