@@ -38,7 +38,8 @@ There are four modules:
 
 ### Main scenario endpoints
 
-You can find main scenario endpoints in [google doc](https://docs.google.com/document/d/1WVX6a76JkLmzUeJz2cZbO1WvXqWsY_XO2sA3a15qgIQ/edit#heading=h.yqb5kvpzfmry)
+You can find main scenario endpoints in [google doc](https://docs.google.com/document/d/1WVX6a76JkLmzUeJz2cZbO1WvXqWsY_XO2sA3a15qgIQ/edit#heading=h.yqb5kvpzfmry). 
+The same is _Scenario endpoints.md_ in our repository.
 
 We also recomend to see some [curl examples](https://github.com/future-stardust/url-shrtnr-le-gushqua/blob/main/manualTests/http.http)
 
